@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import validation from '../server/utilities/validation'
 import { DataContext } from '../store/GlobalState'
+import { postData } from '../server/utilities/userFetchData'
 
 
 export default function Register() {
@@ -20,18 +21,21 @@ export default function Register() {
     //takes in account for change in fields
     const handleChangeInput = e => {
         const {name, value} = e.target;
-        setUserData({...userData, [name]:value})
+        setUserData({...userData, [name]:value});
+        dispatch({ type: 'NOTIFY', payload: {} })
     }
 
     //on pressing register now button, my state is updated to show 
     //successful registration or not 
-    const handleSubmit = e =>{
+    const handleSubmit = async e =>{
         e.preventDefault();
         const errMsg = validation(name, email, pw, cf_pw);
         if(errMsg) return dispatch({type: 'NOTIFY', payload: {error: errMsg} });
-        dispatch({ type: 'NOTIFY', payload: {success: "Registration Successful!"} })
+        dispatch({ type: 'NOTIFY', payload: {loading: true} })
         // console.log(userData);
+        const res = await postData("server/authentication/register", userData);
         
+        console.log(res);
     }
 
     return (
