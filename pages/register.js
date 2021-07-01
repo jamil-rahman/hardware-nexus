@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import validation from '../server/utilities/validation'
+import { DataContext } from '../store/GlobalState'
 
 
 export default function Register() {
@@ -14,16 +15,23 @@ export default function Register() {
     const [userData, setUserData] = useState(initialState);
     const { name, email, pw, cf_pw } = userData;
 
+    const [state, dispatch] = useContext(DataContext);
+
+    //takes in account for change in fields
     const handleChangeInput = e => {
         const {name, value} = e.target;
         setUserData({...userData, [name]:value})
     }
 
+    //on pressing register now button, my state is updated to show 
+    //successful registration or not 
     const handleSubmit = e =>{
         e.preventDefault();
         const errMsg = validation(name, email, pw, cf_pw);
-        if(errMsg) console.log(errMsg);
-        console.log(userData);
+        if(errMsg) return dispatch({type: 'NOTIFY', payload: {error: errMsg} });
+        dispatch({ type: 'NOTIFY', payload: {success: "Registration Successful!"} })
+        // console.log(userData);
+        
     }
 
     return (
