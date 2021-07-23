@@ -1,10 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import Head from 'next/head'
 import Link from 'next/link'
-import {useState, useContext} from 'react'
+import {useState, useContext, useEffect} from 'react'
 import {DataContext} from '../store/GlobalState'
 import {postData} from '../utils/fetchData'
-import Cookie from 'js-cookie';
+import Cookie from 'js-cookie'
+import { useRouter } from 'next/router'
 
 
 
@@ -14,14 +15,16 @@ export default function Signin() {
   const { email, password } = userData
 
   const {state, dispatch} = useContext(DataContext)
+  const {auth} = state
+  const router = useRouter();
 
-
+//handling state change in my input fields
   const handleChangeInput = e => {
     const {name, value} = e.target
     setUserData({...userData, [name]:value})
     dispatch({ type: 'NOTIFY', payload: {} })
   }
-
+//handling all data and state after pressing submit button
   const handleSubmit = async e => {
     e.preventDefault()
     dispatch({ type: 'NOTIFY', payload: {loading: true} })
@@ -42,6 +45,13 @@ export default function Signin() {
     })
     localStorage.setItem('firstLogin', true);
   }
+
+
+//redirect to homepage after successful login
+  useEffect(()=>{
+    if(Object.keys(auth).length !== 0) router.push('/')
+  }, [auth])
+
     return (
         <div>
             <Head>
