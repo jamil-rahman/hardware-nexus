@@ -29,6 +29,10 @@ const userSchema = new mongoose.Schema({
 },{
     timestamps: true
 });
-let Dataset = mongoose.models.User || mongoose.model('Users', userSchema)
+// let Dataset = mongoose.models.User || mongoose.model('Users', userSchema)
 
-export default Dataset;
+// export default Dataset;
+
+export default (mongoose.models && mongoose.models.User
+    ? mongoose.models.User
+    : mongoose.model('User', userSchema));

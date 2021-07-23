@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const itemSchema = new mongoose.Schema({
     title: {
         type: String,
-        trim: true,
         required: true
     },
     price: {
@@ -27,11 +26,13 @@ const itemSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
-
-
 },{
     timestamps: true
 });
-let Dataset = mongoose.models.Item || mongoose.model('item', itemSchema)
+// let Dataset = mongoose.models.Item || mongoose.model('item', itemSchema)
 
-export default Dataset;
+// export default Dataset;
+
+export default (mongoose.models && mongoose.models.Item
+    ? mongoose.models.Item
+    : mongoose.model('Item', itemSchema));
