@@ -76,9 +76,10 @@ const Register = () => {
           <button type="submit" className="btn btn-dark w-100 my-2">Register Now</button>
           <p className="my-2 text-muted"> <span style={{color:"crimson"}}>*</span> Fields are required</p>
           <p className="my-2">Already have an account?   
-          <Link href="/signin"><a style={{color:"crimson"}}>
-          Sign-In here!
-          </a>
+          <Link href="/signin">
+            <a style={{color:"crimson"}}>
+            Sign-In here!
+            </a>
           </Link>
           </p>
       </form>

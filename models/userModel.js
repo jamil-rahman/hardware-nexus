@@ -30,8 +30,11 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 // let Dataset = mongoose.models.User || mongoose.model('Users', userSchema)
-
 // export default Dataset;
+
+
+// model issue solved following this link:
+//https://github.com/kriasoft/react-starter-kit/issues/1418
 
 export default (mongoose.models && mongoose.models.User
     ? mongoose.models.User
