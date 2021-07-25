@@ -57,7 +57,11 @@ export default function Signin() {
             <Head>
                 <title>Sign In</title>
             </Head>
-            
+
+            <div className="row justify-content-center">
+              <h1> Welcome Back!</h1>
+            </div>
+            <hr style={{stroke: "20"}} />
             <form className="mx-auto my-4" style={{maxWidth: "500px"}} onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>

@@ -49,6 +49,7 @@ const Register = () => {
       <Head>
           <title>Register</title>
       </Head>
+      <h1 className="row justify-content-center">Hello!</h1>
       
       <form className="mx-auto my-4" style={{maxWidth: "500px"}} onSubmit={handleSubmit}>
           <div className="form-group">

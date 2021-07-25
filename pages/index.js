@@ -29,7 +29,7 @@ export async function getServerSideProps(context){
   return{
     props: {
       items: res.items,
-      result: res.result
+      result: res.result 
     },  //will be passed to the page component as props
   }
 }
