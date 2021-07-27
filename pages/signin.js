@@ -34,14 +34,13 @@ export default function Signin() {
     dispatch({ type: 'NOTIFY', payload: {success: res.msg} });
 
     dispatch({ type: 'AUTH', payload: {
-        token: "res.access_token",
+        token: res.access_token,
         user: res.user
     } })
 
     Cookie.set('refreshtoken', res.refresh_token, {
         path: 'api/auth/accessToken',
         expires: 7
-
     })
     localStorage.setItem('firstLogin', true);
   }

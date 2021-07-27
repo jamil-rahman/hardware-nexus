@@ -8,7 +8,7 @@ import Cookie from 'js-cookie'
 function NavBar() {
     const router = useRouter()
     const {state, dispatch} = useContext(DataContext)
-    const { auth, cart } = state
+    const { auth } = state
 
 
     const isActive = (r) => {

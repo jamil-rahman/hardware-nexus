@@ -18,12 +18,8 @@ const login = async (req, res) => {
     try{
         const { email, password } = req.body
 
-        
-
         const user = await Users.findOne({ email })
         if(!user) return res.status(400).json({err: 'This user does not exist.'})
-
-        const passwordHash = await bcrypt.hash(password, 12)
 
         const isMatch = await bcrypt.compare(password, user.password)
         if(!isMatch) return res.status(400).json({err: "Incorrect Password"})
@@ -37,10 +33,12 @@ const login = async (req, res) => {
         user: {
             name: user.name,
             email: user.email,
-            avatar: user.avatar
+            avatar: user.avatar,
+            root: user.root
         }
         
         })
+       
 
     }catch(err){
         return res.status(500).json({err: err.message})
