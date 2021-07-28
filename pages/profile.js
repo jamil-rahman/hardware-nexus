@@ -1,7 +1,10 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { DataContext } from '../store/GlobalState'
 import Head from 'next/head'
 import Link from 'next/dist/client/link'
+import valid from '../utils/valid'
+
+
 export default function profile() {
     
     const initialState = {
@@ -16,7 +19,31 @@ export default function profile() {
     const {avatar, name, password, cf_password, contact_number} = data
 
     const {state, dispatch} = useContext(DataContext)
-    const {auth} =  state;
+    const {auth, notify} =  state;
+
+    useEffect(() => {
+       if(auth.user) setData({...data, name: auth.user.name})
+        
+    }, [auth.user])
+
+    const handleChange = (e) =>{ 
+        const {name, value} = e.target
+        setData({...data, [name]:value})
+        dispatch({type:"NOTIFY", payload:{} })
+    }
+
+    const updatePassword = () =>{
+        
+    }
+
+    const handleUpdateProfile = (e) =>{
+        e.preventDefault()
+        if(password){
+            const errMsg = valid(name, auth.user.email, password, cf_password)
+            if(errMsg) return dispatch({type: "NOTIFY", payload: {error: errMsg} })
+            updatePassword()
+        }
+    }
 
     if(!auth.user){
         return(
@@ -57,10 +84,38 @@ export default function profile() {
 
                         <div className="form-group">
                             <label htmlFor="name">Name</label>
-                            <input type="text" name="name" value={name} className="form-control" placeholder="Your Name" />
+                            <input type="text" name="name" defaultValue={auth.user.name} className="form-control" 
+                            placeholder="Your Name" onChange={handleChange}
+                            />
                         </div>
-{/* 9:43 */}
 
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input type="text" name="email" defaultValue={auth.user.email}
+                            className="form-control" disabled={true} placeholder="Your Email" />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" name="password" value={password}
+                             className="form-control" placeholder="Your Password" onChange={handleChange} />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="cf_password">Confirm Password</label>
+                            <input type="password" name="cf_password" value={cf_password} 
+                            className="form-control" placeholder="Type your password again" onChange={handleChange} />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="contact_number">Contact Number</label>
+                            <input type="text" name="contact_number" value={auth.user.contact_number} 
+                            className="form-control" placeholder="Type your phone number" onChange={handleChange} />
+                        </div>
+
+                        <button className="btn btn-info" disabled={notify.loading} onClick={handleUpdateProfile}>
+                            Update
+                        </button>
 
                     
                 </div>
