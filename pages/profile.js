@@ -3,9 +3,10 @@ import { DataContext } from '../store/GlobalState'
 import Head from 'next/head'
 import Link from 'next/dist/client/link'
 import valid from '../utils/valid'
+import { patchData } from '../utils/fetchData'
+import { imageUpload } from '../utils/imageUpload'
 
-
-export default function profile() {
+const Profile = () => {
     
     const initialState = {
         avatar: "",
@@ -32,8 +33,13 @@ export default function profile() {
         dispatch({type:"NOTIFY", payload:{} })
     }
 
-    const updatePassword = () =>{
-        
+    const updatePassword = () => {
+        dispatch({ type: 'NOTIFY', payload: {loading: true} })
+        patchData('user/resetPassword', {password}, auth.token)
+        .then(res => {
+            if(res.err) return dispatch({ type: 'NOTIFY', payload: {error: res.err} })
+            return dispatch({ type: 'NOTIFY', payload: {success: res.msg} })
+        })
     }
 
     const handleUpdateProfile = (e) =>{
@@ -43,6 +49,40 @@ export default function profile() {
             if(errMsg) return dispatch({type: "NOTIFY", payload: {error: errMsg} })
             updatePassword()
         }
+
+        if(name !== auth.user.avatar || avatar) updateInformation()
+    }
+
+    const updateInformation = async () => {
+        let media;
+        dispatch({type: 'NOTIFY', payload: {loading: true}})
+
+        if(avatar) media = await imageUpload([avatar])
+
+        patchData('user', {
+            name, avatar: avatar ? media[0].url : auth.user.avatar
+        }, auth.token).then(res => {
+            if(res.err) return dispatch({type: 'NOTIFY', payload: {error: res.err}})
+
+            dispatch({type: 'AUTH', payload: {
+                token: auth.token,
+                user: res.user
+            }})
+            return dispatch({type: 'NOTIFY', payload: {success: res.msg}})
+        })
+    }
+
+    const changeAvatar = (e) =>{
+        const file = e.target.files[0]
+        
+        if(!file) return dispatch({type: "NOTIFY", payload: {error: "Please choose an image file"} })
+        
+        if(file.size > 1024 * 1024 * 3) return dispatch({type: "NOTIFY", payload: {error: "Image size should not be greater than 3 MB!"} })
+        
+        if(file.type !== "image/jpeg" && file.type !== "image/png") return dispatch({type: "NOTIFY", payload: {error: "Image format not supported"} })
+
+
+        setData({...data, avatar: file})
     }
 
     if(!auth.user){
@@ -74,11 +114,12 @@ export default function profile() {
                     <h3 className="text-center text-uppercase">My Profile</h3>
 
                     <div className="avatar">
-                        <img src={auth.user.avatar} alt={auth.user.avatar}></img>
+                        <img src={avatar? URL.createObjectURL(avatar) : auth.user.avatar} alt={auth.user.avatar}></img>
                         <span>
                             <i className="fa fa-camera" />
                             <p>Change avatar</p>
-                            <input type="file" name="file" id="file_up"></input>
+                            <input type="file" name="file" id="file_up"
+                            accept="image/*" onChange={changeAvatar}></input>
                         </span>
                     </div>
 
@@ -130,3 +171,5 @@ export default function profile() {
     )
 
 }
+
+export default Profile
