@@ -14,6 +14,21 @@ const itemSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    category:{
+        type:String,
+        default:"Not Applicable"
+    },
+    memory:{
+        type: String,
+        default:"Not Applicable"
+    },
+    brand:{
+        type: String,
+    },
+    contact_number:{
+        type: String,
+        required: true
+    },
     location: {
         type: String,
         required: true
@@ -24,8 +39,12 @@ const itemSchema = new mongoose.Schema({
     },
     available:{
         type: Boolean,
-        default: false
-    }
+        default: true
+    },
+    creatorAt:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
 },{
     timestamps: true
 });

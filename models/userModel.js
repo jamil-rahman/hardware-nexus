@@ -23,11 +23,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'https://res.cloudinary.com/hardware-nexus/image/upload/v1624901282/samples/people/avatardefault_o5cpgq.png'
     },
-    contact_number:{
-        type:String,
-        default: ""
-    }
-
     
 
 },{
