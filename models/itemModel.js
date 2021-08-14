@@ -52,6 +52,15 @@ const itemSchema = new mongoose.Schema({
 // export default Dataset;
 
 
+itemSchema.index({
+    title: "text", 
+    memory: "text", 
+    description: "text", 
+    category: "text", 
+    location: "text"
+    
+})
+
 // model issue solved following this link:
 //https://github.com/kriasoft/react-starter-kit/issues/1418
 
