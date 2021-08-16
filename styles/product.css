@@ -1,22 +1,23 @@
-.products{
-    display: grid;
+.items{
+    display:grid;
     grid-template-rows: repeat(auto-fill, minmax(290px, 1fr));
     justify-content: center;
     margin: 20px 0;
+    /* background-color: rgb(242,242,242); */
 }
-.products .card{
+.items .card{
     margin: 10px auto;
 }
-.products .card-img-top{
+.items .card-img-top{
     height: 250px;
     width: 100%;
 }
-.products .card-title{
+.items .card-title{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.products .card-text{
+.items .card-text{
     height: 70px;
     overflow: hidden;
     -webkit-box-orient: vertical;

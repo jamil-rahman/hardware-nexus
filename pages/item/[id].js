@@ -11,7 +11,7 @@ const DetailedProduct = (props) =>{
         return 
     }
     return(
-        <div className="row detail_page">
+        <div className="row detail_page" style={{backgroundColor: `rgb(255,255,255)`}}>
             <Head>
                 <title>Hardware Details</title>
             </Head>

@@ -1,15 +1,21 @@
 import Head from 'next/head'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
+import { DataContext } from "../store/GlobalState";
 import {getData} from '../utils/fetchData'
 import HardwareItem from '../components/hardware/HardwareItem';
 import { filtering } from '../utils/filtering';
 import { useRouter } from 'next/router';
+import Link from 'next/dist/client/link';
+import Category from '../components/Category';
+
 export default function Home(props) {
 
   const [items,setItems] = useState(props.items);
   const [page, setPage] = useState(1)
   const router = useRouter();
 
+  const { state, dispatch } = useContext(DataContext);
+  const { auth, notify } = state;
   useEffect(() => {
     setItems(props.items)
   }, [props.items])
@@ -29,11 +35,51 @@ export default function Home(props) {
       filtering({router, page: page + 1})
   }
   // console.log(items);
+
+  if (!auth.user) {
+    return (
+      <div className="profile_page">
+        <Head>
+          <title>Oops!</title>
+        </Head>
+        <div
+          className="row d-flex align-items-center justify-content-center"
+          style={{
+            top: "50%",
+            left: "50%",
+            position: "absolute",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <h1>It seems you have entered forbidden grounds</h1>
+
+          <h3 className="my-5">
+            If you have an account, try{" "}
+            <Link href="/signin">
+              <a style={{ color: "crimson" }}>logging in </a>
+            </Link>{" "}
+            for from here
+          </h3>
+          <br />
+          <h3 className="my-3">
+            Or, If you don't have an account, you can{" "}
+            <Link href="/register">
+              <a style={{ color: "crimson" }}>sign-up </a>
+            </Link>
+            from here
+          </h3>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="home_page">
       <Head>
         <title>The Nexus</title>
       </Head>  
+
+    <Category />
+
       <div className="items">
       {
         items.length === 0 

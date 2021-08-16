@@ -20,7 +20,7 @@ const uploadInformation = async (req, res) => {
         const newUser = await Users.findOneAndUpdate({_id: result.id}, {name, avatar})
 
         res.json({
-            msg: "Image uploaded succesfully",
+            msg: "Changes have been succesful",
             user: {
                 name,
                 avatar,
