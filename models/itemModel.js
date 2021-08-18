@@ -41,6 +41,9 @@ const itemSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
+    key:{
+        type: String,
+    },
     creatorAt:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -52,14 +55,14 @@ const itemSchema = new mongoose.Schema({
 // export default Dataset;
 
 
-itemSchema.index({
-    title: "text", 
-    memory: "text", 
-    description: "text", 
-    category: "text", 
-    location: "text"
+// itemSchema.index({
+//     title: "text", 
+//     memory: "text", 
+//     description: "text", 
+//     category: "text", 
+//     location: "text"
     
-})
+// })
 
 // model issue solved following this link:
 //https://github.com/kriasoft/react-starter-kit/issues/1418

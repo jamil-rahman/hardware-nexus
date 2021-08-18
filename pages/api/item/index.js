@@ -29,7 +29,10 @@ class APIfeatures{
 
         if(queryObj.category !== 'all') this.query.find({category: queryObj.category})
 
-        if(queryObj.title !== 'all') this.query.find({title: {$regex: queryObj.title} })
+        if(queryObj.key !== 'all') this.query.find({key: {$regex: queryObj.key} })
+ 
+        
+
 
         this.query.find()
         return this;
@@ -96,14 +99,25 @@ const getItems = async(req,res) => {
 const createItem = async (req, res) => {
     try {
 
-        const {title, price, memory, location, description, brand, category, images, contact_number, creatorAt} = req.body
+        const {title, price, memory, location, description, brand, category, images, contact_number, creatorAt, key} = req.body
 
         if(!title || !price  || !description || !location || !contact_number || images.length === 0)
         return res.status(400).json({err: 'Please add all the required fields.'})
 
 
         const newItem = new Items({
-            title: title.toLowerCase(), price, memory, location, description, brand, category, images, contact_number, creatorAt
+            title: title.toLowerCase(),
+            price,
+            memory,
+            location: location.toLowerCase(),
+            description: description.toLowerCase(),
+            brand: brand.toLowerCase(),
+            category: category.toLowerCase(),
+            images,
+            contact_number,
+            key: title.toLowerCase() + " " + location.toLowerCase() + " " +  category.toLowerCase() + " " + brand.toLowerCase(),
+            creatorAt,
+            
         })
 
         await newItem.save()

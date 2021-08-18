@@ -15,7 +15,7 @@ export default function Home(props) {
   const router = useRouter();
 
   const { state, dispatch } = useContext(DataContext);
-  const { auth, notify } = state;
+  const { auth} = state;
   useEffect(() => {
     setItems(props.items)
   }, [props.items])
@@ -108,9 +108,9 @@ export async function getServerSideProps({query}){
   const sort  = query.sort || ''
   const search  = query.search || 'all'
   
-  const res = await getData(`item?limit=${page * 4}&category=${category}&sort=${sort}&title=${search}`)
+  const res = await getData(`item?limit=${page * 4}&category=${category}&sort=${sort}&key=${search}`)
  
-  //  console.log(res);
+  //  console.log(query);
   return{
     props: {
       items: res.items,

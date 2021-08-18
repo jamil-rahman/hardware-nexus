@@ -2,7 +2,6 @@ import React, {useState,useEffect} from 'react'
 import { filtering } from '../utils/filtering'
 import { getData } from '../utils/fetchData'
 import { useRouter } from 'next/router'
-import Items from '../models/itemModel'
 
 
 export default function Category() {
