@@ -14,7 +14,7 @@ export default function Home(props) {
   const [page, setPage] = useState(1)
   const router = useRouter();
 
-  const { state, dispatch } = useContext(DataContext);
+  const { state} = useContext(DataContext);
   const { auth} = state;
   useEffect(() => {
     setItems(props.items)

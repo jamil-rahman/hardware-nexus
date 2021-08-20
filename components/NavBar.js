@@ -27,21 +27,8 @@ function NavBar() {
         return router.push('/signin')
     }
 
-    // const adminRouter = () => {
-    //     return(
-    //         <>
-    //         <Link href="/users">
-    //             <a className="dropdown-item">Users</a>
-    //         </Link>
-    //         <Link href="/create">
-    //             <a className="dropdown-item">Products</a>
-    //         </Link>
-    //         <Link href="/categories">
-    //             <a className="dropdown-item">Categories</a>
-    //         </Link>
-    //         </>
-    //     )
-    // }
+
+    //if user is logged in, then logged Router
 
     const loggedRouter = () => {
         return(
@@ -50,7 +37,8 @@ function NavBar() {
                     <img src={auth.user.avatar} alt={auth.user.avatar} 
                     style={{
                         borderRadius: '50%', width: '30px', height: '30px',
-                        transform: 'translateY(-3px)', marginRight: '3px'
+                        transform: 'translateY(-3px)', marginRight: '3px',
+                        color:"white"
                     }} /> {auth.user.name}
                 </a>
 
@@ -67,11 +55,11 @@ function NavBar() {
             </li>
         )
     }
-
+//If user is not logged in
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-dark navbar-custom" >
             <Link  href="/">
-                <a className="navbar-brand">Hardware Nexus</a>
+                <a className="navbar-brand mx-auto" style={{fontFamily: "Exo"}}>Hardware Nexus</a>
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { to_capital_case } from '../../utils/toCapitalCase';
+import { to_capital_case,addComma } from '../../utils/toCapitalCase';
 
 export default function HardwareItem({item}) {
     // console.log(item);
@@ -18,17 +18,17 @@ export default function HardwareItem({item}) {
         <div className="card mb-4" style={{width: "70rem"}}>
             <img src={item.images[0].url} className="card-img-top" alt={item.images[0].url} style={{height: "20rem"}}/>
             <div className="card-body">
-                <h5 className="card-title" title={item.title}>{to_capital_case(item.title)} |  
+                <h5 className="card-title"  title={item.title}>{item.title.toUpperCase()} |  
                 
                 {
                     (item.location!= "")
-                    ? <span style={{color: "#A9A9A9"}}>{item.location} </span>
+                    ? <span style={{color: "#A9A9A9"}}>{to_capital_case(item.location)} </span>
                     : <span style={{color: "#A9A9A9"}}> Location is not available </span>
                 }
  
                 </h5>
                 <div className="d-flex flex-row bd-highlight mb-1">
-                <subtitle className="d-flex justify-content-start"><span style={{fontWeight: "900"}}>৳</span>{item.price}</subtitle>
+                <subtitle className="d-flex justify-content-start"><span style={{fontWeight: "900"}}>৳</span>{addComma(item.price)}</subtitle>
                 
                 </div>
                 {

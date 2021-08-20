@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 
 
 export default function Category() {
-    // const [title, setTitle] = useState("")
     const [search, setSearch] = useState("")
     const [sort, setSort] = useState("")
     

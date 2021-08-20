@@ -84,18 +84,6 @@ const getItems = async(req,res) => {
 
 
 
-
-// export const searchItems = async (searchTerm) =>{
-//     await Items.init();
-    
-//     const items = await Items.find({ 
-//         $text: { $search: searchTerm } 
-//     }) 
-//     console.log("your items: ", items)
-//     res.json(items)
-// }
-
-
 const createItem = async (req, res) => {
     try {
 
@@ -116,7 +104,7 @@ const createItem = async (req, res) => {
             images,
             contact_number,
             key: title.toLowerCase() + " " + location.toLowerCase() + " " +  category.toLowerCase() + " " + brand.toLowerCase(),
-            creatorAt,
+            creatorAt
             
         })
 

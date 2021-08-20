@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 
 
 export default function Signin() {
-    const initialState = { email: '', password: '' }
+  const initialState = { email: '', password: '' }
   const [userData, setUserData] = useState(initialState)
   const { email, password } = userData
 

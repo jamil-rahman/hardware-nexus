@@ -1,21 +1,6 @@
 export const filtering = ({router, page, category, sort, search}) =>
 {
-    const query = router.query
-    // const path = [
-    //      {
-    //       '$search': {
-    //         'search': {
-    //           'query': query, 
-    //           'path': [
-    //             'location', 'brand', 'title', ''
-    //           ]
-    //         }
-    //       }
-    //     }
-    //   ]
-    
-    
-    
+    const query = router.query  
     const path= router.pathname
 
     
