@@ -169,67 +169,73 @@ const Profile = () => {
           </div>
 
           <div className="form-group ">
-            <label htmlFor="name">Name</label>
+            {/* <label htmlFor="name">Name</label> */}
             <input
+            style={{width: "60%"}}
               type="text"
               name="name"
               defaultValue={auth.user.name}
-              className="form-control"
-              placeholder="Your Name"
+              className="form-control mx-auto"
+              placeholder="Chnage your Name"
               onChange={handleChange} />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
+          <div className="form-group ">
+            {/* <label htmlFor="email">Email</label> */}
             <input
+            style={{width: "60%"}}
               type="text"
               name="email"
               defaultValue={auth.user.email}
-              className="form-control"
+              className="form-control mx-auto"
               disabled={true}
-              placeholder="Your Email" />
+              placeholder="Update your Email" />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
+          <div className="form-group ">
+            {/* <label htmlFor="password">Password</label> */}
             <input
+            style={{width: "60%"}}
               type="password"
               name="password"
               value={password}
-              className="form-control"
-              placeholder="Your Password"
+              className="form-control mx-auto"
+              placeholder="Update your Password"
               onChange={handleChange} />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="cf_password">Confirm Password</label>
+          <div className="form-group ">
+            {/* <label htmlFor="cf_password">Confirm Password</label> */}
             <input
+            style={{width: "60%"}}
               type="password"
               name="cf_password"
               value={cf_password}
-              className="form-control"
+              className="form-control mx-auto"
               placeholder="Type your password again"
               onChange={handleChange} />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="contact_number" style={{justifyContent:"center"}}>Contact Number</label>
+          <div className="form-group mx-auto">
+            {/* <label htmlFor="contact_number" style={{justifyContent:"center"}}>Contact Number</label> */}
             <input 
               style={{width: "60%"}}
               type="text"
               name="contact_number"
               value={auth.user.contact_number}
               className="form-control mx-auto"
-              placeholder="Type your phone number"
+              placeholder="Update your phone number"
               onChange={handleChange} />
           </div>
 
+          <div className="col text-center">
           <button
-            className="btn btn-info mx-auto"
+            className="btn btn-info "
             disabled={notify.loading}
             onClick={handleUpdateProfile} >
             Update
           </button>
+          </div>
         </div>
 
         
