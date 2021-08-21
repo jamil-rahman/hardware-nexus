@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { to_capital_case,addComma } from '../../utils/toCapitalCase';
+import {format} from "timeago.js";
 
 export default function HardwareItem({item}) {
     // console.log(item);
@@ -15,26 +16,26 @@ export default function HardwareItem({item}) {
     }
     
     return (
-        <div className="card mb-4" style={{width: "70rem"}}>
+        <div className="card mb-4" style={{width: "70rem", background:"rgba(10, 10, 10, 0.719)",color:"white"}}>
             <img src={item.images[0].url} className="card-img-top" alt={item.images[0].url} style={{height: "20rem"}}/>
             <div className="card-body">
-                <h5 className="card-title"  title={item.title}>{item.title.toUpperCase()} |  
+                <h5 className="card-title"  title={item.title}>{item.title.toUpperCase()} |
                 
                 {
                     (item.location!= "")
-                    ? <span style={{color: "#A9A9A9"}}>{to_capital_case(item.location)} </span>
-                    : <span style={{color: "#A9A9A9"}}> Location is not available </span>
+                    ? <span style={{color: "#4267B2"}}> {to_capital_case(item.location)} </span>
+                    : <span style={{color: "#4267B2"}}> Location is not available </span>
                 }
- 
+                     <h6 style={{color: "grey"}}> {format(item.createdAt)}</h6>
                 </h5>
                 <div className="d-flex flex-row bd-highlight mb-1">
-                <subtitle className="d-flex justify-content-start"><span style={{fontWeight: "900"}}>৳</span>{addComma(item.price)}</subtitle>
+                <subtitle className="d-flex justify-content-start" style={{fontFamily:"'Kameron', serif"}}><span style={{fontWeight: "900"}}>৳</span >{addComma(item.price)}</subtitle>
                 
                 </div>
                 {
                     (item.available===true)
-                    ? <subtitle className="text-success d-flex justify-content-start"> Item is available</subtitle>
-                    : <subtitle className="text-danger d-flex justify-content-start"> Item is not available</subtitle>
+                    ? <subtitle className="text-success d-flex"> Item is available</subtitle>
+                    : <subtitle className="text-danger d-flex "> Item is not available</subtitle>
                 }
                 <p className="card-text">{item.description}</p>
                 <div className="row justify-content-center">

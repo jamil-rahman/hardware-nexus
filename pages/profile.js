@@ -146,9 +146,9 @@ const Profile = () => {
         <title>Profile</title>
       </Head>
 
-      <section className="row text-secondary my-5">
-        <div className="col-md-4">
-          <h3 className="text-center text-uppercase">My Profile</h3>
+      <section className="row text-secondary my-5 mx-auto">
+        <div className="col-md-12">
+          <h3 className="text-center text-uppercase">{auth.user.name}'s Profile</h3>
 
           <div className="avatar">
             <img
@@ -158,7 +158,7 @@ const Profile = () => {
             <span>
               <i className="fa fa-camera" />
               <p>Change avatar</p>
-              <input
+              <input 
                 type="file"
                 name="file"
                 id="file_up"
@@ -168,7 +168,7 @@ const Profile = () => {
             </span>
           </div>
 
-          <div className="form-group">
+          <div className="form-group ">
             <label htmlFor="name">Name</label>
             <input
               type="text"
@@ -213,28 +213,26 @@ const Profile = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="contact_number">Contact Number</label>
-            <input
+            <label htmlFor="contact_number" style={{justifyContent:"center"}}>Contact Number</label>
+            <input 
+              style={{width: "60%"}}
               type="text"
               name="contact_number"
               value={auth.user.contact_number}
-              className="form-control"
+              className="form-control mx-auto"
               placeholder="Type your phone number"
               onChange={handleChange} />
           </div>
 
           <button
-            className="btn btn-info"
+            className="btn btn-info mx-auto"
             disabled={notify.loading}
             onClick={handleUpdateProfile} >
             Update
           </button>
         </div>
 
-        <div className="col-md-8">
-          <h3>{auth.user.name} </h3>{" "}
-          <i className="fa fa-map-marker"> location</i>
-        </div>
+        
       </section>
     </div>
   );

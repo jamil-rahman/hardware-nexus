@@ -119,7 +119,7 @@ const ItemManager = () =>{
         return "Not available"
     }
     return(
-        <div className="products_manager">
+        <div className="products_manager" style={{color: "white"}}>
         <Head>
             <title>Post Your Ad</title>
         </Head>
@@ -189,7 +189,7 @@ const ItemManager = () =>{
                 </button>
 
             </div>
-
+{/* image uploader */}
             <div className="col-md-6 my-4">
              <label htmlFor="Location" >Add images<span style={{color:"crimson"}}>*</span> </label>
                 <div className="input-group mb-3">

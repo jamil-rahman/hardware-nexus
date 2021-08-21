@@ -1,8 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import { filtering } from '../utils/filtering'
-import { getData } from '../utils/fetchData'
 import { useRouter } from 'next/router'
-
+import Link from 'next/link'
 
 export default function Category() {
     const [search, setSearch] = useState("")
@@ -21,9 +20,10 @@ export default function Category() {
 
     const router = useRouter()
     return (
-        <div className="input-group">
+        <div className="row justify-content-center">
+        <div className="input-group" style={{width:"100%"}}>   
 
-            <form autoComplete="off" className="mt-2 col-md-8 px-0">
+            <form autoComplete="off" className="mt-2 col-md-8 px-0 mx-auto">
                
                 <input type="text" className="form-control" list="title_product"
                 placeholder="Try 'CPU, GPU, Ryzen, GTX 1660'"
@@ -44,6 +44,11 @@ export default function Category() {
             </div>
 
         
+        </div>
+
+        <Link href="/create">
+        <button type="button" class="btn btn-warning my-2">Post an Advertisement</button>
+        </Link>
         </div>
     )
 }
