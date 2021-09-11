@@ -49,7 +49,7 @@ export default function Home(props) {
             left: "50%",
             position: "absolute",
             transform: "translate(-50%, -50%)",
-            color: "white"
+            color: "black"
           }}
         >
           <h1>It seems you have entered forbidden grounds</h1>

@@ -33,12 +33,12 @@ function NavBar() {
     const loggedRouter = () => {
         return(
             <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src={auth.user.avatar} alt={auth.user.avatar} 
                     style={{
                         borderRadius: '50%', width: '30px', height: '30px',
                         transform: 'translateY(-3px)', marginRight: '3px',
-                        color:"white"
+                        color:"black"
                     }} /> {auth.user.name}
                 </a>
 
@@ -57,9 +57,9 @@ function NavBar() {
     }
 //If user is not logged in
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark navbar-custom" >
+        <nav className="navbar navbar-expand-lg navbar-light navbar-custom" >
             <Link  href="/">
-                <a className="navbar-brand mx-auto" style={{fontFamily: "Exo"}}>Hardware Nexus</a>
+                <a className="navbar-brand mx-auto text-white" style={{fontFamily: "Exo"}}>Hardware Nexus</a> 
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -69,10 +69,10 @@ function NavBar() {
                    
                     {
                         Object.keys(auth).length === 0 
-                        ? <li className="nav-item">
+                        ? <li className="nav-item" >
                             <Link href="/signin">
-                                <a className={"nav-link" + isActive('/signin')}>
-                                    <i className="fa fa-user" aria-hidden="true"></i> Sign in
+                                <a className={"nav-link text-white" + isActive('/signin')} >
+                                    <i className="fa fa-user"  aria-hidden="true"></i> Sign in
                                 </a>
                             </Link>
                         </li>

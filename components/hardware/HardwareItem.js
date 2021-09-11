@@ -16,7 +16,7 @@ export default function HardwareItem({item}) {
     }
     
     return (
-        <div className="card mb-4" style={{width: "70rem", background:"rgba(10, 10, 10, 0.719)",color:"white"}}>
+        <div className="card mb-4" style={{width: "70rem"}}>
             <img src={item.images[0].url} className="card-img-top" alt={item.images[0].url} style={{height: "20rem"}}/>
             <div className="card-body">
                 <h5 className="card-title"  title={item.title}>{item.title.toUpperCase()} |
@@ -26,10 +26,10 @@ export default function HardwareItem({item}) {
                     ? <span style={{color: "#4267B2"}}> {to_capital_case(item.location)} </span>
                     : <span style={{color: "#4267B2"}}> Location is not available </span>
                 }
-                     <h6 style={{color: "grey"}}> {format(item.createdAt)}</h6>
+                     <h5 style={{color: "grey"}}> {format(item.createdAt)}</h5>
                 </h5>
                 <div className="d-flex flex-row bd-highlight mb-1">
-                <subtitle className="d-flex justify-content-start" style={{fontFamily:"'Kameron', serif"}}><span style={{fontWeight: "900"}}>৳</span >{addComma(item.price)}</subtitle>
+                <span className="d-flex justify-content-start" style={{fontFamily:"'Kameron', serif"}}><span style={{fontWeight: "900"}}>৳</span >{addComma(item.price)}</span>
                 
                 </div>
                 {

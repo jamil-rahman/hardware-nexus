@@ -58,24 +58,24 @@ export default function Signin() {
             </Head>
 
             <div className="row justify-content-center">
-              <h1> Welcome Back!</h1>
+              <h1 style={{color: "black"}}> Welcome Back!</h1>
             </div>
-            <hr style={{stroke: "20"}} />
+            <hr style={{stroke: "20",color: "black"}} />
             <form className="mx-auto my-4" style={{maxWidth: "500px"}} onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <label htmlFor="exampleInputEmail1" style={{color: "black"}}>Email address</label>
                     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" 
                     name="email" value={email} onChange={handleChangeInput} />
                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <label htmlFor="exampleInputPassword1" style={{color: "black"}}>Password</label>
                     <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"
                     name="password" value={password} onChange={handleChangeInput} />
                 </div>
                 
-                <button type="submit" className="btn btn-dark w-100">Login</button>
-                <p className="my-2">Don't have an account?   
+                <button type="submit" className="btn btn-success w-100">Login</button>
+                <p className="my-2" style={{color: "black"}}>Don't have an account?   
                 <Link href="/register"><a style={{color:"crimson"}}>
                 Register
                 </a>

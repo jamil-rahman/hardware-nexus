@@ -4,6 +4,7 @@ import { DataContext} from "../../store/GlobalState"
 import { imageUpload } from "../../utils/imageUpload"
 import { postData } from "../../utils/fetchData"
 import { useRouter } from "next/dist/client/router"
+import Link from 'next/dist/client/link';
 
 const ItemManager = () =>{
     const initialState = {
@@ -27,23 +28,7 @@ const ItemManager = () =>{
 
     const router = useRouter()
 
-    // const router = useRouter()
-    // const {id} = router.query
-    // const [onEdit, setOnEdit] = useState(false)
 
-    // useEffect(() =>{
-    //     if(id){
-    //         setOnEdit(true)
-    //         getData(`item/${id}`).then(res=>{
-    //             setItem(res.item)
-    //             setImages(res.item.images)
-    //         })
-    //     }else{
-    //         setOnEdit(false)
-    //         setItem(initialState)
-    //         setImages([])
-    //     }
-    // },[id])
 
     // any changes in the form
     const handleChangeInput = e =>{
@@ -118,8 +103,49 @@ const ItemManager = () =>{
         if(tab===index) return "Available"
         return "Not available"
     }
+
+
+
+    if (!auth.user) {
+        return (
+          <div className="profile_page">
+            <Head>
+              <title>Oops!</title>
+            </Head>
+            <div
+              className="row d-flex align-items-center justify-content-center"
+              style={{
+                top: "50%",
+                left: "50%",
+                position: "absolute",
+                transform: "translate(-50%, -50%)",
+                color: "black"
+              }}
+            >
+              <h1>It seems you have entered forbidden grounds</h1>
+    
+              <h3 className="my-5">
+                If you have an account, try{" "}
+                <Link href="/signin">
+                  <a style={{ color: "crimson" }}>logging in </a>
+                </Link>{" "}
+                for from here
+              </h3>
+              <br />
+              <h3 className="my-3">
+                Or, If you don't have an account, you can{" "}
+                <Link href="/register">
+                  <a style={{ color: "crimson" }}>sign-up </a>
+                </Link>
+                from here
+              </h3>
+            </div>
+          </div>
+        );
+      }
+
     return(
-        <div className="products_manager" style={{color: "white"}}>
+        <div className="products_manager" style={{color: "black"}}>
         <Head>
             <title>Post Your Ad</title>
         </Head>
@@ -194,9 +220,9 @@ const ItemManager = () =>{
              <label htmlFor="Location" >Add images<span style={{color:"crimson"}}>*</span> </label>
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
-                        <span className="input-group-text">Upload</span>
+                        <span className="input-group-text" style={{color: "black", background: "rgb(15,200,147)"}}>Upload</span>
                     </div>
-                    <div className="custom-file border rounded">
+                    <div className="custom-file border rounded" style={{backgroundColor: "white"}}>
                         <input type="file" className="custom-file-input"
                          multiple accept="image/*" onChange={handleUploadInput} />
                     </div>

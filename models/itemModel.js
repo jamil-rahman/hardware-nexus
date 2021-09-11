@@ -45,7 +45,7 @@ const itemSchema = new mongoose.Schema({
         type: String,
     },
     creatorAt:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: 'User'
     },
 },{

@@ -86,7 +86,6 @@ const getItems = async(req,res) => {
 
 const createItem = async (req, res) => {
     try {
-
         const {title, price, memory, location, description, brand, category, images, contact_number, creatorAt, key} = req.body
 
         if(!title || !price  || !description || !location || !contact_number || images.length === 0)

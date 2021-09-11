@@ -25,6 +25,13 @@ export default function Notify() {
                 bgColor="bg-danger"
             />
         }
+         {notify.warning && 
+            <Toast
+                message={{ msg: notify.warning, title: "Ticket sent" }}
+                handleShow={() => dispatch({ type: 'NOTIFY', payload: {} })}
+                bgColor="bg-warning"
+            />
+        }
 
        
     </>
